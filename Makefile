@@ -18,7 +18,7 @@ ${NAME}:${OBJ}
 	${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	${RM} ${OBJ} ${objB}
+	${RM} ${OBJ}
 
 fclean:clean
 	${RM} ${NAME}
