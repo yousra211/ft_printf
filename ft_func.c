@@ -6,7 +6,7 @@
 /*   By: yhamdaou <yhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:18:10 by yhamdaou          #+#    #+#             */
-/*   Updated: 2025/11/18 19:05:43 by yhamdaou         ###   ########.fr       */
+/*   Updated: 2025/11/20 11:54:43 by yhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_putstr(char *str)
 	}
 }
 
-int	ft_putnbrhex_low(unsigned long s)
+int	ft_putnbrhex_low(unsigned int s)
 {
 	char *hex;
 	int	count;
@@ -43,7 +43,7 @@ int	ft_putnbrhex_low(unsigned long s)
 	return (count);
 }
 
-int	ft_putnbrhex_up(unsigned long s)
+int	ft_putnbrhex_up(unsigned int s)
 {
 	char *hex;
 	int count;
@@ -62,16 +62,17 @@ int	ft_putadress(void *str)
 	unsigned long s;
 	int count;
 	
-	s = (unsigned long)str;
+	count = 2;
+	s = (unsigned int)str;
 	write(1, "0x", 2);
-	count = ft_putnbrhex_low(s);
+	count += ft_putnbrhex_low(s);
 	return (count);
 }
 
 int	ft_putnbr(int nbr)
 {
-	long x;
-	int c;
+	long	x;
+	int		c;
 	
 	x = nbr;
 	c = 0;
@@ -82,7 +83,7 @@ int	ft_putnbr(int nbr)
 	}
 	if (x > 9)
 		c += ft_putnbr(x / 10);
-	ft_putchar (x % 10);
+	ft_putchar ((x % 10) + '0');
 	c++;
 	return (c);
 }

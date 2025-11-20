@@ -6,21 +6,20 @@
 /*   By: yhamdaou <yhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:16:41 by yhamdaou          #+#    #+#             */
-/*   Updated: 2025/11/19 12:01:23 by yhamdaou         ###   ########.fr       */
+/*   Updated: 2025/11/20 12:48:13 by yhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_printf.h"
 
-
 int	ft_printf(const char *str, ...)
 {
 	int	i;
 	int count;
 	va_list args;
-	va_start(args, str);
 
+	va_start(args, str);
 	i = 0;
 	count = 0;
 	while (str[i])
@@ -55,12 +54,12 @@ int	ft_printf(const char *str, ...)
 		}
 		else if (str[i] == '%' && str[i + 1] == 'x')
 		{
-			count += ft_putnbrhex_low(va_arg(args, int));
+			count += ft_putnbrhex_low(va_arg(args,unsigned int));
 			i++;
 		}
 		else if (str[i] == '%' && str[i + 1] == 'X')
 		{
-			count += ft_putnbrhex_up(va_arg(args, int));
+			count += ft_putnbrhex_up(va_arg(args,unsigned int));
 			i++;
 		}
 		else if (str[i] == '%' && str[i + 1] == '%')
@@ -83,11 +82,12 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int main()
 {
-	char *str = "hello";
+	// char *str = "hello";
+	int n = -1238997987;
 	printf("mine\n");
-	int i = ft_printf("le mot est %s", str);
-	printf("\n%d", i);
+	int i = ft_printf("le mot est le %%  %x", n);
+	printf("\n%d\n", i);
 	printf("original\n");
-	int j = printf("le mot est %s", str);
+	int j = printf("le mot est le %%  %x", n);
 	printf("\n%d", j);
 }

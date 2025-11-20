@@ -45,6 +45,25 @@ void	ft_printf_unsigned(unsigned int n)
 	ft_putchar((n % 10) + '0');
 }
 
+void	ft_putnbr(int nbr)
+{
+	long x;
+	// int c;
+	
+	x = nbr;
+	// c = 0;
+	if (x < 0)
+	{
+		x = -x;
+		write(1, "-", 1);
+	}
+	if (x > 9)
+		ft_putnbr(x / 10);
+	ft_putchar (x % 10 + '0');
+	// c++;
+	// return (c);
+}
+
 int main()
 
 {
@@ -60,7 +79,10 @@ int main()
 	// ft_putadress(str);
 
 	// printf("%u", -2147483648);
-	ft_printf_unsigned(-22);
+	// ft_printf_unsigned(-22);
+	ft_putnbr(123);
+	// int i = ft_putnbr(123);
+	// printf ("%d", i);
 }
 
 
