@@ -2,7 +2,7 @@ CC = cc
 NAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf.c ft_func.c
+SRC = ft_printf.c ft_func.c ft_supfunc.c
 
 OBJ = ${SRC:.c=.o}
 

@@ -6,34 +6,41 @@
 /*   By: yhamdaou <yhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 12:18:10 by yhamdaou          #+#    #+#             */
-/*   Updated: 2025/11/20 11:54:43 by yhamdaou         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:55:37 by yhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
-void	ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
 	}
+	return (i);
 }
 
 int	ft_putnbrhex_low(unsigned int s)
 {
-	char *hex;
-	int	count;
-	
+	char	*hex;
+	int		count;
+
 	hex = "0123456789abcdef";
 	count = 0;
 	if (s >= 16)
@@ -45,9 +52,9 @@ int	ft_putnbrhex_low(unsigned int s)
 
 int	ft_putnbrhex_up(unsigned int s)
 {
-	char *hex;
-	int count;
-	
+	char	*hex;
+	int		count;
+
 	hex = "0123456789ABCDEF";
 	count = 0;
 	if (s >= 16)
@@ -59,53 +66,12 @@ int	ft_putnbrhex_up(unsigned int s)
 
 int	ft_putadress(void *str)
 {
-	unsigned long s;
-	int count;
-	
+	unsigned long	s;
+	int				count;
+
 	count = 2;
 	s = (unsigned int)str;
 	write(1, "0x", 2);
 	count += ft_putnbrhex_low(s);
 	return (count);
-}
-
-int	ft_putnbr(int nbr)
-{
-	long	x;
-	int		c;
-	
-	x = nbr;
-	c = 0;
-	if (x < 0)
-	{
-		x = -x;
-		write(1, "-", 1);
-	}
-	if (x > 9)
-		c += ft_putnbr(x / 10);
-	ft_putchar ((x % 10) + '0');
-	c++;
-	return (c);
-}
-
-int	ft_printf_unsigned(unsigned int n)
-{
-	int c;
-
-	c = 0;
-	if (n > 9)
-		c += ft_printf_unsigned(n / 10);
-	ft_putchar((n % 10) + '0');
-	c++;
-	return(c);
-}
-
-int	ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while(str[i])
-		i++;
-	return(i);
 }

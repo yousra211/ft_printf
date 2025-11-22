@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_supfunc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhamdaou <yhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/20 15:50:14 by yhamdaou          #+#    #+#             */
-/*   Updated: 2025/11/20 15:56:48 by yhamdaou         ###   ########.fr       */
+/*   Created: 2025/11/20 15:54:19 by yhamdaou          #+#    #+#             */
+/*   Updated: 2025/11/20 15:57:54 by yhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_putnbr(int nbr)
+{
+	long	x;
+	int		c;
 
-int		ft_putchar(char c);
-int		ft_putstr(char *str);
-int		ft_putadress(void *str);
-int		ft_putnbrhex_low(unsigned int s);
-int		ft_putnbrhex_up(unsigned int s);
-int		ft_putnbr(int nbr);
-int		ft_printf_unsigned(unsigned int n);
+	x = nbr;
+	c = 0;
+	if (x < 0)
+	{
+		x = -x;
+		write(1, "-", 1);
+	}
+	if (x > 9)
+		c += ft_putnbr(x / 10);
+	ft_putchar ((x % 10) + '0');
+	c++;
+	return (c);
+}
 
-#endif
+int	ft_printf_unsigned(unsigned int n)
+{
+	int	c;
+
+	c = 0;
+	if (n > 9)
+		c += ft_printf_unsigned(n / 10);
+	ft_putchar((n % 10) + '0');
+	c++;
+	return (c);
+}
